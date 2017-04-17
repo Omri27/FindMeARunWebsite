@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {RunService} from '../run.service'
+import {RunService} from '../shared/run.service'
 
 @Component({
   selector: 'app-run-list',
