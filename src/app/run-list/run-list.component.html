@@ -1,0 +1,9 @@
+<div>
+    <h1>Run List</h1>
+    <hr/>
+    <div class="row">
+        <div *ngFor ="let run of runs" >
+            <app-run-thumbnail  [run]="run"  (eventClick)="handleEventClicked($event)"></app-run-thumbnail>
+        </div>
+    </div>
+</div>
