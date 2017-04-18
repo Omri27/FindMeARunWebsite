@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
+import {RunDetailsRouteActivator} from "./run-details-route-activator.service";
 
-import { EventDetailsRouteActivatorService } from './run-details-route-activator.service';
 
 describe('EventDetailsRouteActivatorService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [EventDetailsRouteActivatorService]
+      providers: [RunDetailsRouteActivator]
     });
   });
 
-  it('should ...', inject([EventDetailsRouteActivatorService], (service: EventDetailsRouteActivatorService) => {
+  it('should ...', inject([RunDetailsRouteActivator], (service: RunDetailsRouteActivator) => {
     expect(service).toBeTruthy();
   }));
 });
