@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 
 @Injectable()
 export class RunService {
@@ -8,5 +8,8 @@ export class RunService {
 
 getRuns(){
   return this.af.database.list('/runs');
+}
+getRun(id :string):FirebaseObjectObservable<any>{
+  return this.af.database.object('/runs/'+id);
 }
 }
