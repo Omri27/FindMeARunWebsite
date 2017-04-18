@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 import { AppComponent } from './app.component';
-import { RunListComponent } from './runs/run-list/run-list.component';
+import { FeedRunListComponent } from './runs/run-list/feed-run-list.component';
 import { RunThumbnailComponent } from './runs/run-thumbnail/run-thumbnail.component';
 import { RunService } from './runs/shared/run.service';
 import { AuthService } from './user/shared/auth.service';
@@ -16,6 +16,8 @@ import { Error404Component } from './errors/404.component'
 import {AuthGuardService} from "./user/shared/auth-guard.service";
 import { RunDetailsComponent } from './runs/run-details/run-details.component';
 import {RunDetailsRouteActivator} from "./runs/run-details/run-details-route-activator.service";
+import { HistoryRunListComponent } from './runs/history-run-list/history-run-list.component';
+import { UpcomingRunListComponent } from './runs/upcoming-run-list/upcoming-run-list.component';
 
 
 export const firebaseConfig = {
@@ -28,11 +30,13 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    RunListComponent,
+    FeedRunListComponent,
     RunThumbnailComponent,
     NavBarComponent,
     Error404Component,
-    RunDetailsComponent
+    RunDetailsComponent,
+    HistoryRunListComponent,
+    UpcomingRunListComponent
   ],
   imports: [
     BrowserModule,RouterModule.forRoot(appRoutes),

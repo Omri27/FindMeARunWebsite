@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFire, AuthProviders ,AuthMethods } from 'angularfire2';
 import {Observable} from "rxjs/Observable";
-import {isSuccess} from "@angular/http/src/http_utils";
 
 @Injectable()
 export class AuthService {
@@ -15,17 +14,30 @@ currentUser:any
           method: AuthMethods.Password
         }).then((authData) => {
           this.currentUser = authData;
+
           observer.next(authData);
-          console.log(authData)
         }).catch((error) => {
           observer.error(error);
         });
       });
     }
       isAuthenticated(){
-        return !!this.currentUser;
-    }
-    logOut(){
+     return  !!this.currentUser
 
+
+    }
+    checkAuthenticationStatus(){
+   return this.af.auth.subscribe(user=>{
+    if(user) {
+      this.currentUser = user;
+      return true;
+    }
+    else{
+      this.currentUser=null;
+      return {};}
+  })
+}
+    logOut(){
+      this.af.auth.logout();
     }
 }

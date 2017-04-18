@@ -1,0 +1,9 @@
+<div>
+  <h1>History Run List</h1>
+  <hr/>
+  <div class="row">
+    <div *ngFor ="let historyRun of histoyrRuns" >
+      <app-run-thumbnail  [run]="historyRun"  (eventClick)="handleEventClicked($event)"></app-run-thumbnail>
+    </div>
+  </div>
+</div>

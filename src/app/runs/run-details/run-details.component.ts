@@ -13,8 +13,6 @@ export class RunDetailsComponent implements OnInit {
 
   ngOnInit() {
      this.runService.getRun(this.route.snapshot.params['id']).subscribe((run)=>this.run= run);
-
-      //this.route.data.subscribe((run)=>{console.log(this.run);this.run=run})
   }
 
 }
