@@ -17,7 +17,7 @@ historyRuns:any
     this.authService.getAuthObservable().subscribe(user=>{
       let uid = user.uid;
       this.runService.postForHistory(uid).subscribe(x => {
-        this.runService.postForHistory(uid).subscribe(historyRuns=>{
+        this.runService.getHistoryRuns(uid).subscribe(historyRuns=>{
         this.historyRuns=historyRuns
         });
     })

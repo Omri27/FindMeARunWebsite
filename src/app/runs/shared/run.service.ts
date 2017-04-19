@@ -44,7 +44,7 @@ getFeedRuns(){
 
     return this.http.post('http://localhost:8080/getHistoryRuns',{userId: uid},options)
   }
-getHistoryRuns(uid){
+  getHistoryRuns(uid){
     return this.runs= this.af.database.list('users/'+uid+"/historyRuns");
 }
   getUpcomingRuns(uid){
