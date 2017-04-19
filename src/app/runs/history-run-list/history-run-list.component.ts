@@ -16,9 +16,9 @@ export class HistoryRunListComponent implements OnInit {
   ngOnInit() {
     this.authService.getAuthObservable().subscribe(user => {
       let uid = user.uid;
-      console.log(uid)
       this.runService.getHistoryRuns(uid).subscribe(historyRuns => {
         this.historyRuns = historyRuns;
+        console.log(historyRuns)
       })
     })
 

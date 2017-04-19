@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-run-thumbnail',
@@ -7,9 +8,11 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class RunThumbnailComponent implements OnInit {
 @Input() run:any
-  constructor() { }
-
+  parentRoute:any
+  constructor(private route:Router) {
+  }
   ngOnInit() {
+    this.parentRoute = this.route.url;
   }
 
 }

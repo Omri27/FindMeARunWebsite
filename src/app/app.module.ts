@@ -15,7 +15,6 @@ import {appRoutes} from './routes';
 import { Error404Component } from './errors/404.component'
 import {AuthGuardService} from "./user/shared/auth-guard.service";
 import { RunDetailsComponent } from './runs/run-details/run-details.component';
-import {RunDetailsRouteActivator} from "./runs/run-details/run-details-route-activator.service";
 import { HistoryRunListComponent } from './runs/history-run-list/history-run-list.component';
 import { UpcomingRunListComponent } from './runs/upcoming-run-list/upcoming-run-list.component';
 import { HistoryRunDetailsComponent } from './runs/history-run-details/history-run-details.component';
@@ -46,7 +45,7 @@ export const firebaseConfig = {
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],
-  providers: [RunService, AuthService, AuthGuardService,RunDetailsRouteActivator],
+  providers: [RunService, AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

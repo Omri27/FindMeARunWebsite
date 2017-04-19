@@ -1,4 +1,4 @@
-<div [routerLink]="['/runs', run?.$key]" class="well hoverwell thumbnail">
+<div [routerLink]="['/'+parentRoute, run?.$key]" class="well hoverwell thumbnail">
         <h2> {{run?.name}} </h2>
          <div> Creator: {{run?.creator}}</div>
         <div> Date: {{run?.date}}</div>
