@@ -12,6 +12,6 @@ export class AppComponent {
 
   }
 ngOnInit(){
-this.authService.checkAuthenticationStatus()
+this.authService.isAuthenticated()
 }
 }

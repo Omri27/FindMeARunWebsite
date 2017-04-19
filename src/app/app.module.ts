@@ -18,6 +18,7 @@ import { RunDetailsComponent } from './runs/run-details/run-details.component';
 import {RunDetailsRouteActivator} from "./runs/run-details/run-details-route-activator.service";
 import { HistoryRunListComponent } from './runs/history-run-list/history-run-list.component';
 import { UpcomingRunListComponent } from './runs/upcoming-run-list/upcoming-run-list.component';
+import { HistoryRunDetailsComponent } from './runs/history-run-details/history-run-details.component';
 
 
 export const firebaseConfig = {
@@ -36,7 +37,8 @@ export const firebaseConfig = {
     Error404Component,
     RunDetailsComponent,
     HistoryRunListComponent,
-    UpcomingRunListComponent
+    UpcomingRunListComponent,
+    HistoryRunDetailsComponent
   ],
   imports: [
     BrowserModule,RouterModule.forRoot(appRoutes),

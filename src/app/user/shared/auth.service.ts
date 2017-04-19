@@ -26,6 +26,9 @@ currentUser:any
 
 
     }
+    getAuthObservable(){
+      return this.af.auth;
+    }
     checkAuthenticationStatus(){
    return this.af.auth.subscribe(user=>{
     if(user) {

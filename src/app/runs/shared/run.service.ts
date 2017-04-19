@@ -6,6 +6,7 @@ import {AuthService} from "../../user/shared/auth.service";
 export class RunService {
   userId:any
   constructor(private af:AngularFire,private authService: AuthService) {
+
   }
 
 getFeedRuns(){
@@ -14,9 +15,10 @@ getFeedRuns(){
 getRun(id :string){
   return this.af.database.object('/runs/'+id);
 }
-getHistoryRuns(){
-  console.log( this.authService.currentUser);
-
-
+getHistoryRuns(uid){
+   return this.af.database.list('users/'+uid+"/historyRuns");
 }
+  getUpcomingRuns(uid){
+    return this.af.database.list('users/'+uid+"/comingUpRuns");
+  }
 }
