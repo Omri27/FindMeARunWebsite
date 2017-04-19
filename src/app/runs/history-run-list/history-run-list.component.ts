@@ -8,19 +8,19 @@ import {AuthService} from "../../user/shared/auth.service";
   styleUrls: ['./history-run-list.component.css']
 })
 export class HistoryRunListComponent implements OnInit {
-  historyRuns: any
-
-  constructor(private runService: RunService, private authService: AuthService) {
+historyRuns:any
+  userid :any
+  constructor(private runService:RunService,private authService: AuthService) {
   }
 
   ngOnInit() {
-    this.authService.getAuthObservable().subscribe(user => {
+    this.authService.getAuthObservable().subscribe(user=>{
       let uid = user.uid;
-      this.runService.getHistoryRuns(uid).subscribe(historyRuns => {
-        this.historyRuns = historyRuns;
-        console.log(historyRuns)
-      })
+      this.runService.postForHistory(uid).subscribe(x => {
+        this.runService.postForHistory(uid).subscribe(historyRuns=>{
+        this.historyRuns=historyRuns
+        });
     })
-
+  })
   }
 }
