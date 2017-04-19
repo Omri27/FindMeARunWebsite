@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Router} from "@angular/router";
+import {RunService} from "../shared/run.service";
+import {AuthService} from "../../user/shared/auth.service";
 
 @Component({
   selector: 'app-run-thumbnail',
@@ -9,10 +11,16 @@ import {Router} from "@angular/router";
 export class RunThumbnailComponent implements OnInit {
 @Input() run:any
   parentRoute:any
-  constructor(private route:Router) {
+  constructor(private route:Router, private runService:RunService, private authService:AuthService) {
+
   }
   ngOnInit() {
     this.parentRoute = this.route.url;
   }
-
+  beThereClick(runId:any){
+    this.authService.getAuthObservable().subscribe(user=>{
+      let userId = user.uid;
+      this.runService.signToRun(userId,runId);
+    })
+  }
 }

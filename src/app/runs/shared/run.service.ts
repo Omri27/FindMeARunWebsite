@@ -54,4 +54,7 @@ getFeedRuns(){
     this.af.database.object('users/'+userId + '/historyRuns/'+runId).update({marked:true})
     this.af.database.object('users/'+userId + '/historyRuns/'+runId).update({like:yesNo})
   }
+  signToRun(userId,runId){
+    this.af.database.list('users/'+userId+"/comingUpRuns/"+runId).push({1:1});
+  }
 }
