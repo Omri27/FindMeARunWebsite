@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UpcomingRunListComponent } from './upcoming-run-list.component';
+import { GoogleComponent } from './google.component';
 
-describe('UpcomingRunListComponent', () => {
-  let component: UpcomingRunListComponent;
-  let fixture: ComponentFixture<UpcomingRunListComponent>;
+describe('GoogleComponent', () => {
+  let component: GoogleComponent;
+  let fixture: ComponentFixture<GoogleComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UpcomingRunListComponent ]
+      declarations: [ GoogleComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UpcomingRunListComponent);
+    fixture = TestBed.createComponent(GoogleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

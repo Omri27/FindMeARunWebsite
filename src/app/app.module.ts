@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {RouterModule} from '@angular/router'
-import { FormsModule } from '@angular/forms';
+import {FormsModule, FormControl, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 import { AppComponent } from './app.component';
@@ -16,8 +16,9 @@ import { Error404Component } from './errors/404.component'
 import {AuthGuardService} from "./user/shared/auth-guard.service";
 import { RunDetailsComponent } from './runs/run-details/run-details.component';
 import { HistoryRunListComponent } from './runs/history-run-list/history-run-list.component';
-import { UpcomingRunListComponent } from './runs/upcoming-run-list/upcoming-run-list.component';
 import { HistoryRunDetailsComponent } from './runs/history-run-details/history-run-details.component';
+import { AgmCoreModule } from "angular2-google-maps/core";
+import { GoogleComponent } from './runs/google/google.component';
 
 
 export const firebaseConfig = {
@@ -29,6 +30,7 @@ export const firebaseConfig = {
 };
 @NgModule({
   declarations: [
+    GoogleComponent,
     AppComponent,
     FeedRunListComponent,
     RunThumbnailComponent,
@@ -36,12 +38,16 @@ export const firebaseConfig = {
     Error404Component,
     RunDetailsComponent,
     HistoryRunListComponent,
-    UpcomingRunListComponent,
-    HistoryRunDetailsComponent
+    HistoryRunDetailsComponent,
+
   ],
   imports: [
-    BrowserModule,RouterModule.forRoot(appRoutes),
-    FormsModule,
+    BrowserModule,
+    FormsModule,ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey :'AIzaSyCcrFLwomwDjSz6m3gq035SjeezOVgqyuY',
+      libraries: ["places"]
+    }),RouterModule.forRoot(appRoutes),
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],

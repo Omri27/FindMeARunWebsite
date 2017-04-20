@@ -1,9 +1,0 @@
-<div>
-  <h1>Upcoming Runs</h1>
-  <hr/>
-  <div class="row">
-    <div *ngFor ="let upComingRun of upComingRuns" >
-      <app-run-thumbnail  [run]="upComingRun"  (eventClick)="handleEventClicked($event)"></app-run-thumbnail>
-    </div>
-  </div>
-</div>
