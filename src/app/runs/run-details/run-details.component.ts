@@ -24,7 +24,6 @@ this.authService.getAuthObservable().subscribe(user=>{
     this.userId = user.uid
   this.route.url.subscribe(url => {
     this.routeUrl = url[0].path
-    console.log("hello "+ this.routeUrl)
     this.runService.getRun(this.userId,this.routeUrl, this.route.snapshot.params['id']).subscribe((run) => {
       let arr =[]
         for(let key in run.runners){

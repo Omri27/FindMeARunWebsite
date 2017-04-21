@@ -6,7 +6,7 @@ import {HistoryRunListComponent} from "./runs/history-run-list/history-run-list.
 
 export const appRoutes:Routes = [
     {path:'runs', component:FeedRunListComponent, canActivate: [AuthGuardService]  },
-    {path:'',redirectTo:'/runs', pathMatch:'full'},
+    {path:'',redirectTo:'/runs', pathMatch:'full' },
     {path:'historyruns', component:HistoryRunListComponent, canActivate: [AuthGuardService]  },
     {path:'user',loadChildren:'app/user/user.module#UserModule'},
     {path:'runs/:id', component: RunDetailsComponent, canActivate: [AuthGuardService]  },

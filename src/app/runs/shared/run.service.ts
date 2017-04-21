@@ -50,6 +50,19 @@ getFeedRuns(){
   setLike(userId , runId,yesNo:any){
     this.af.database.object('users/'+userId + '/historyRuns/'+runId).update({marked:true})
     this.af.database.object('users/'+userId + '/historyRuns/'+runId).update({like:yesNo})
+    this.postForUpdate(userId).subscribe(x=>{
+      if(x.ok)
+      console.log("Good");
+      else
+        console.log(x);
+    });
+
+  }
+  postForUpdate(uid){
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post('http://localhost:8080/updateAverage',{userId: uid},options)
   }
   signToRun(userId,runId){
     this.af.database.object('users/'+userId+"/comingUpRuns/"+runId).set(true);

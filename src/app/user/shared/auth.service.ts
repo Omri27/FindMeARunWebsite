@@ -37,10 +37,11 @@ currentUser:any
     }
     else{
       this.currentUser=null;
-      return {};}
+      return false;}
   })
 }
     logOut(){
+
       this.af.auth.logout();
     }
 }

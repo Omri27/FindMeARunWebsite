@@ -14,13 +14,15 @@ historyRuns:any
   }
 
   ngOnInit() {
-    this.authService.getAuthObservable().subscribe(user=>{
+    this.authService.getAuthObservable().subscribe(user=> {
+      if(user!= null && user.uid!=null) {
       let uid = user.uid;
       this.runService.postForHistory(uid).subscribe(x => {
-        this.runService.getHistoryRuns(uid).subscribe(historyRuns=>{
-        this.historyRuns=historyRuns
+        this.runService.getHistoryRuns(uid).subscribe(historyRuns => {
+          this.historyRuns = historyRuns
         });
-    })
+      })
+    }
   })
   }
 }
