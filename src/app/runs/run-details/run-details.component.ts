@@ -24,9 +24,18 @@ this.authService.getAuthObservable().subscribe(user=>{
     this.userId = user.uid
   this.route.url.subscribe(url => {
     this.routeUrl = url[0].path
-    console.log("hello "+ this.userId)
+    console.log("hello "+ this.routeUrl)
     this.runService.getRun(this.userId,this.routeUrl, this.route.snapshot.params['id']).subscribe((run) => {
-      console.log(run)
+      let arr =[]
+        for(let key in run.runners){
+          arr.push(key);
+        }
+        arr.forEach(Id=>{
+          if(this.userId  == Id )
+            run.sign = true;
+          else
+            run.sign = false;
+        })
       this.run = run});
   })
 })
@@ -37,5 +46,18 @@ this.authService.getAuthObservable().subscribe(user=>{
     else
       this.runService.setLike(this.userId,this.run.$key,false);
 
+  }
+
+  signToRun(runId:any){
+    this.authService.getAuthObservable().subscribe(user=>{
+      let userId = user.uid;
+      this.runService.signToRun(userId,runId);
+    })
+  }
+  cancelSign(runId:any){
+    this.authService.getAuthObservable().subscribe(user=>{
+      let userId = user.uid;
+      this.runService.signOut(userId,runId);
+    })
   }
 }

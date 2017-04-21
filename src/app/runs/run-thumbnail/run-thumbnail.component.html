@@ -1,7 +1,10 @@
-<div [routerLink]="['/'+parentRoute, run?.$key]" class="well hoverwell thumbnail">
+<div [routerLink]="[parentRoute, run?.$key]" class="well hoverwell thumbnail">
         <h2> {{run?.name}} </h2>
          <div> Creator: {{run?.creator}}</div>
         <div> Date: {{run?.date}}</div>
         <div>  Time: {{run?.time}}</div>
-  <div class="beThereBtn"><button (click)="beThereClick(run?.$key)"> Be There</button></div>
+  <div *ngIf="parentRoute!='/historyruns'">
+  <div *ngIf = "!run?.sign" class="beThereBtn"><button (click)="signToRun(run?.$key)">Sign To the Run</button></div>
+  <div *ngIf = "run?.sign" class="Cancel"><button (click)="cancelSign(run?.$key)">Cancel sign Up</button></div>
+  </div>
 </div>

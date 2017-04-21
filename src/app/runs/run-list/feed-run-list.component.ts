@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {RunService} from '../shared/run.service'
 import {AuthService} from "../../user/shared/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-run-list',
@@ -9,22 +10,48 @@ import {AuthService} from "../../user/shared/auth.service";
 })
 export class FeedRunListComponent implements OnInit {
   runs:any[]
-  constructor(private runService:RunService,private authService:AuthService ) { }
+  constructor(private runService:RunService,private authService:AuthService, private route:Router) { }
 
   ngOnInit() {
-    this.authService.getAuthObservable().subscribe(user=>{
-      let userId= user.uid;
-      this.runService.getFeedRuns().subscribe(runs=>{
-        this.runs=runs
-    runs.forEach(run=>{
-      for(var i=0; i<run.Runners.length;i++){
-        console.log(run.Runners[i])
-      }
-    })
-      })
 
 
-  });
+      let
+        date = new Date();
 
-}
+        this.authService.getAuthObservable().subscribe(user => {
+          let userId = user.uid;
+          this.runService.getFeedRuns().subscribe(runs => {
+            let arr = []
+            runs = runs.filter(x => {
+              var parts = x.date.split("-");
+              let runDate = new Date(parts[1] + "-" + parts[0] + "-" + parts[2] + " " + x.time);
+              if (date < runDate)
+                return x;
+            })
+            runs.forEach(run => {
+              for (let key in run.runners) {
+                arr.push(key);
+              }
+              arr.forEach(Id => {
+                if (userId == Id)
+                  run.sign = true;
+                else
+                  run.sign = false;
+              })
+              arr = [];
+            })
+            switch(this.route.url) {
+              case "/runs":
+                this.runs = runs
+                break;
+              case "/upcomingruns":
+                this.runs = runs.filter(run => run.sign == true)
+                break;
+            }
+          })
+
+
+        });
+    }
+
 }

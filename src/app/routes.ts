@@ -11,5 +11,6 @@ export const appRoutes:Routes = [
     {path:'user',loadChildren:'app/user/user.module#UserModule'},
     {path:'runs/:id', component: RunDetailsComponent},
   {path:'historyruns/:id', component: RunDetailsComponent},
-  {path:'upcomingruns', component:HistoryRunListComponent/*, canActivate: [AuthGuardService]  */},
+  {path:'upcomingruns/:id', component: RunDetailsComponent},
+  {path:'upcomingruns', component:FeedRunListComponent/*, canActivate: [AuthGuardService]  */},
 ]

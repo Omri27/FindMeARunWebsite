@@ -30,7 +30,6 @@ export class GoogleComponent implements OnInit {
 
     //create search FormControl
     this.searchControl = new FormControl();
-console.log("before")
     //set current position
     this.setCurrentPosition();
   //load Places Autocomplete

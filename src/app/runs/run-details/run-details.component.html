@@ -21,7 +21,10 @@
           <label><input type="radio"  (click)="radioButtonClick('no')"  [checked]="!run?.like" name="optradio">No</label>
         </div>
       </div>
-
     </div>
+  </div>
+  <div *ngIf="routeUrl!='historyruns'">
+    <div *ngIf = "!run?.sign" class="beThereBtn"><button (click)="signToRun(run?.$key)">Sign To the Run</button></div>
+    <div *ngIf = "run?.sign" class="Cancel"><button (click)="cancelSign(run?.$key)">Cancel sign Up</button></div>
   </div>
 </div>

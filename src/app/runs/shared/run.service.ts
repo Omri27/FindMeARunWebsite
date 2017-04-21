@@ -29,8 +29,11 @@ getFeedRuns(){
       Url = 'runs';
       userId=null;
       break;
+    case 'upcomingruns':
+      Url = 'runs';
+      userId=null;
+      break;
   }
-  console.log(userId)
     if (userId==null) {
       return this.af.database.object('/' + Url + '/' + id);
     }
@@ -47,14 +50,16 @@ getFeedRuns(){
   getHistoryRuns(uid){
     return this.runs= this.af.database.list('users/'+uid+"/historyRuns");
 }
-  getUpcomingRuns(uid){
-    return this.af.database.list('users/'+uid+"/comingUpRuns");
-  }
   setLike(userId , runId,yesNo:any){
     this.af.database.object('users/'+userId + '/historyRuns/'+runId).update({marked:true})
     this.af.database.object('users/'+userId + '/historyRuns/'+runId).update({like:yesNo})
   }
   signToRun(userId,runId){
-    this.af.database.list('users/'+userId+"/comingUpRuns/"+runId).push({1:1});
+    this.af.database.object('users/'+userId+"/comingUpRuns/"+runId).set(true);
+    this.af.database.object('runs/'+runId+"/runners/"+userId).set(true);
+  }
+  signOut(userId,runId){
+    this.af.database.object('users/'+userId+"/comingUpRuns/"+runId).remove();
+    this.af.database.object('runs/'+runId+"/runners/"+userId).remove();
   }
 }

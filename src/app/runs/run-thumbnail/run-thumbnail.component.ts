@@ -17,10 +17,16 @@ export class RunThumbnailComponent implements OnInit {
   ngOnInit() {
     this.parentRoute = this.route.url;
   }
-  beThereClick(runId:any){
+  signToRun(runId:any){
     this.authService.getAuthObservable().subscribe(user=>{
       let userId = user.uid;
       this.runService.signToRun(userId,runId);
+    })
+  }
+  cancelSign(runId:any){
+    this.authService.getAuthObservable().subscribe(user=>{
+      let userId = user.uid;
+      this.runService.signOut(userId,runId);
     })
   }
 }
