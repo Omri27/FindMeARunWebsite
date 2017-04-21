@@ -16,9 +16,6 @@ export class RunService {
 getFeedRuns(){
   return this.af.database.list('/runs');
 }
-// getRun(id :string){
-//   return this.af.database.object('/runs/'+id);
-// }
   getRun(userId:any,routeUrl:any, id:any){
   let Url = null
   switch(routeUrl){
