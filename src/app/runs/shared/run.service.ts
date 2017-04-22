@@ -65,6 +65,7 @@ getFeedRuns(){
     return this.http.post('http://localhost:8080/updateAverage',{userId: uid},options)
   }
   signToRun(userId,runId){
+
     this.af.database.object('users/'+userId+"/comingUpRuns/"+runId).set(true);
     this.af.database.object('runs/'+runId+"/runners/"+userId).set(true);
   }

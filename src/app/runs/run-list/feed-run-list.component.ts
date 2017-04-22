@@ -33,19 +33,20 @@ export class FeedRunListComponent implements OnInit {
                     arr.push(key);
                   }
                   arr.forEach(Id => {
-                    if (userId == Id)
+                    if (userId == Id) {
                       run.sign = true;
-                    else
+                    }else {
                       run.sign = false;
+                    }
                   })
                   arr = [];
                 })
                 switch (this.route.url) {
                   case "/runs":
-                    this.runs = runs
+                    this.runs = runs;
                     break;
                   case "/upcomingruns":
-                    this.runs = runs.filter(run => run.sign == true)
+                    this.runs = runs.filter(run => run.sign == true);
                     break;
                 }
               })
