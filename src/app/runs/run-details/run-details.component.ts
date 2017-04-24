@@ -35,7 +35,10 @@ this.authService.getAuthObservable().subscribe(user=>{
           else
             run.sign = false;
         })
-      this.run = run});
+      run.location.longtitude= +run.location.longtitude
+      run.location.latitude= +run.location.latitude
+      this.run = run;
+    });
   })
 })
   }
@@ -51,6 +54,7 @@ this.authService.getAuthObservable().subscribe(user=>{
     this.authService.getAuthObservable().subscribe(user=>{
       let userId = user.uid;
       this.runService.signToRun(userId,runId);
+
     })
   }
   cancelSign(runId:any){

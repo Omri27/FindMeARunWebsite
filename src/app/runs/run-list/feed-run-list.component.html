@@ -2,11 +2,11 @@
     <h1>Run Feed</h1>
     <hr/>
   <span>Please Type the Address in which you want to filter by</span>
-  <app-google></app-google>
+  <app-google (eventClick)="handleUserUpdated($event)"></app-google>
   <hr/>
     <div class="row">
         <div *ngFor ="let run of runs" >
-            <app-run-thumbnail  [run]="run"  (eventClick)="handleEventClicked($event)"></app-run-thumbnail>
+            <app-run-thumbnail  [run]="run"   ></app-run-thumbnail>
         </div>
     </div>
 </div>

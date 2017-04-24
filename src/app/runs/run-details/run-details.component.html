@@ -12,7 +12,11 @@
       <div><strong>Creator:</strong> {{run?.name}}</div>
       <div><strong>Date:</strong> {{run?.date}}</div>
       <div><strong>Time:</strong> {{run?.time}}</div>
-      <div><strong>Location:</strong> {{run?.location}}</div>
+      <div><strong>Distance:</strong> {{run?.distance}}</div>
+      <div><strong>Location:</strong> {{run?.location?.name}}</div>
+      <sebm-google-map [latitude]="run?.location?.latitude" [longitude]="run?.location?.longtitude" [scrollwheel]="true" [zoom]="12">
+        <sebm-google-map-marker [latitude]="run?.location?.latitude" [longitude]="run?.location?.longtitude"></sebm-google-map-marker>
+      </sebm-google-map>
       <div *ngIf="run?.hasOwnProperty('like')" ><strong>Like:</strong>&nbsp;
         <div class="radio">
         <label><input type="radio" (click)="radioButtonClick('yes')" [checked]="run?.like" name="optradio">Yes</label>

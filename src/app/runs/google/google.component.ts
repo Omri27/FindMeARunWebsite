@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef, ViewChild, NgZone} from '@angular/core';
+import {Component, OnInit, ElementRef, ViewChild, NgZone, Output, EventEmitter} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {MapsAPILoader} from "angular2-google-maps/core";
 import {} from '@types/googlemaps';
@@ -10,7 +10,7 @@ import {} from '@types/googlemaps';
 })
 
 export class GoogleComponent implements OnInit {
-
+  @Output() eventClick = new EventEmitter();;
    latitude: number;
    longitude: number;
    searchControl: FormControl;
@@ -32,6 +32,7 @@ export class GoogleComponent implements OnInit {
     this.searchControl = new FormControl();
     //set current position
     this.setCurrentPosition();
+
   //load Places Autocomplete
   this.mapsAPILoader.load().then(() => {
     let autocomplete = new google.maps.places.Autocomplete(
@@ -65,9 +66,13 @@ export class GoogleComponent implements OnInit {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
         this.zoom = 12;
+        this.eventClick.emit(this.longitude+","+ this.latitude);
       });
     }
   }
+  sortByLocation(){
+    this.eventClick.emit(this.longitude+","+ this.latitude);
 
+  }
 }
 declare var google;

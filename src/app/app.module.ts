@@ -19,6 +19,7 @@ import { HistoryRunListComponent } from './runs/history-run-list/history-run-lis
 import { HistoryRunDetailsComponent } from './runs/history-run-details/history-run-details.component';
 import { AgmCoreModule } from "angular2-google-maps/core";
 import { GoogleComponent } from './runs/google/google.component';
+import { SortDistancePipe } from './runs/shared/sort-distance.pipe';
 
 
 export const firebaseConfig = {
@@ -39,6 +40,7 @@ export const firebaseConfig = {
     RunDetailsComponent,
     HistoryRunListComponent,
     HistoryRunDetailsComponent,
+    SortDistancePipe,
 
   ],
   imports: [
