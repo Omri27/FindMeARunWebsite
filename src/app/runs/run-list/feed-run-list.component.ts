@@ -28,8 +28,6 @@ export class FeedRunListComponent implements OnInit {
         let userId = user.uid;
         let array = location.split(',');
         let Location = {longtitude: array[0], latitude: array[1]};
-        if (this.route.url)
-
           switch (this.route.url) {
             case "/runs":
               this.runService.postFeedRuns(userId, Location).subscribe(x => {
@@ -51,23 +49,11 @@ export class FeedRunListComponent implements OnInit {
     this.runService.getFeedRuns(userId).subscribe(runs => {
       let arr = []
       runs = runs.filter(x => {
+        console.log(x.date);
         var parts = x.date.split("-");
         let runDate = new Date(parts[1] + "-" + parts[0] + "-" + parts[2] + " " + x.time);
         if (date < runDate)
           return x;
-      })
-      runs.forEach(run => {
-        for (let key in run.runners) {
-          arr.push(key);
-        }
-        arr.forEach(Id => {
-          if (userId == Id) {
-            run.sign = true;
-          } else {
-            run.sign = false;
-          }
-        })
-        arr = [];
       })
       switch (this.route.url) {
         case "/runs":

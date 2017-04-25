@@ -25,16 +25,16 @@ this.authService.getAuthObservable().subscribe(user=>{
   this.route.url.subscribe(url => {
     this.routeUrl = url[0].path
     this.runService.getRun(this.userId,this.routeUrl, this.route.snapshot.params['id']).subscribe((run) => {
-      let arr =[]
-        for(let key in run.runners){
-          arr.push(key);
-        }
-        arr.forEach(Id=>{
-          if(this.userId  == Id )
-            run.sign = true;
-          else
-            run.sign = false;
-        })
+      // let arr =[]
+      //   for(let key in run.runners){
+      //     arr.push(key);
+      //   }
+      //   arr.forEach(Id=>{
+      //     if(this.userId  == Id )
+      //       run.sign = true;
+      //     else
+      //       run.sign = false;
+      //   })
       run.location.longtitude= +run.location.longtitude
       run.location.latitude= +run.location.latitude
       this.run = run;
