@@ -7,8 +7,7 @@ import {SortDistancePipe} from "../shared/sort-distance.pipe";
 @Component({
   selector: 'app-run-list',
   templateUrl: 'feed-run-list.component.html',
-  styleUrls: ['feed-run-list.component.css'],
-  providers: [SortDistancePipe]
+  styleUrls: ['feed-run-list.component.css']
 })
 export class FeedRunListComponent implements OnInit {
   runs: any[]
@@ -49,7 +48,6 @@ export class FeedRunListComponent implements OnInit {
     this.runService.getFeedRuns(userId).subscribe(runs => {
       let arr = []
       runs = runs.filter(x => {
-        console.log(x.date);
         var parts = x.date.split("-");
         let runDate = new Date(parts[1] + "-" + parts[0] + "-" + parts[2] + " " + x.time);
         if (date < runDate)
