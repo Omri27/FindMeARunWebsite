@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {RunService} from '../shared/run.service'
 import {AuthService} from "../../user/shared/auth.service";
 import {Router} from "@angular/router";
-import {SortDistancePipe} from "../shared/sort-distance.pipe";
 
 @Component({
   selector: 'app-run-list',
@@ -21,7 +20,7 @@ export class FeedRunListComponent implements OnInit {
   }
 
   handleUserUpdated(location) {
-
+console.log(location)
     this.authService.getAuthObservable().subscribe(user => {
       if (user != null && user.uid != null) {
         let userId = user.uid;

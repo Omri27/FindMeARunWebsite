@@ -8,7 +8,7 @@ import {LocationStrategy} from "@angular/common";
 @Injectable()
 export class RunService {
   runs:any
-  APIADDRESS:any = '192.168.18.15'
+  APIADDRESS:any = 'localhost'
   userId:any
   constructor(private af:AngularFire,private authService: AuthService, private http: Http) {
 
@@ -56,17 +56,17 @@ else
   getHistoryRuns(uid){
     return this.runs= this.af.database.list('users/'+uid+"/historyRuns");
 }
-  setLike(userId , runId,yesNo:any){
-    this.af.database.object('users/'+userId + '/historyRuns/'+runId).update({marked:true})
-    this.af.database.object('users/'+userId + '/historyRuns/'+runId).update({like:yesNo})
-    this.postForUpdate(userId).subscribe(x=>{
-      if(x.ok)
-      console.log("Good");
-      else
-        console.log(x);
-    });
-
-  }
+  // setLike(userId , runId,yesNo:any){
+  //   this.af.database.object('users/'+userId + '/historyRuns/'+runId).update({marked:true})
+  //   this.af.database.object('users/'+userId + '/historyRuns/'+runId).update({like:yesNo})
+  //   this.postForUpdate(userId).subscribe(x=>{
+  //     if(x.ok)
+  //     console.log("Good");
+  //     else
+  //       console.log(x);
+  //   });
+  //
+  // }
   postForUpdate(uid){
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });

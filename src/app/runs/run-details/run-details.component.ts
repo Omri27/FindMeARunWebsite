@@ -42,13 +42,13 @@ this.authService.getAuthObservable().subscribe(user=>{
   })
 })
   }
-  radioButtonClick(yesNo:any){
-    if(yesNo=="yes")
-    this.runService.setLike(this.userId,this.run.$key,true);
-    else
-      this.runService.setLike(this.userId,this.run.$key,false);
-
-  }
+  // radioButtonClick(yesNo:any){
+  //   if(yesNo=="yes")
+  //   this.runService.setLike(this.userId,this.run.$key,true);
+  //   else
+  //     this.runService.setLike(this.userId,this.run.$key,false);
+  //
+  // }
 
   signToRun(runId:any){
     this.authService.getAuthObservable().subscribe(user=>{
