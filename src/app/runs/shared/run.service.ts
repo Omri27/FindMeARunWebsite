@@ -61,24 +61,49 @@ else
     this.af.database.object('users/'+userId+"/historyRuns/"+runId).remove();
     this.af.database.object('users/'+userId+"/comingUpRunsIds/"+runId).remove();
   }
-  postForUpdate(uid){
+  postForUpdate(uid,runKey){
+    console.log("post");
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-
-    return this.http.post('http://localhost:8080/updateAverage',{userId: uid},options)
+    return this.http.post('http://'+this.APIADDRESS+':8080/updateAverage',{userId:uid,runId:runKey},options)
   }
   signToRun(userId,runId){
-    this.af.database.object("users/"+userId+"/feedRuns/"+runId+"/runners/"+userId).set(true);
-    this.af.database.object("users/"+userId+"/feedRuns/"+runId+"/sign").set(true);
-    this.af.database.object("users/"+userId+"/comingUpRunsIds/"+runId).set(true);
+    this.af.database.object("users/"+userId+"/feedRuns/"+runId+"/runners/"+userId).set(true).then(x=>{
+
+      this.af.database.object("users/"+userId+"/feedRuns/"+runId+"/sign").set(true).then(x=>{
+
+        this.af.database.object("users/"+userId+"/comingUpRunsIds/"+runId).set(true).then(x=>{
+
+           this.af.database.object('runs/'+runId+"/runners/"+userId).set(true).then(x=>{
+
+             this.postForUpdate(userId,runId).subscribe(x=>{
+               console.log(x)
+             });
+           });
+        });
+      });
+    })
+
+
    // this.af.database.object('users/'+userId+"/comingUpRuns/"+runId).set(true);
-    this.af.database.object('runs/'+runId+"/runners/"+userId).set(true);
+
   }
   signOut(userId,runId){
-    this.af.database.object("users/"+userId+"/feedRuns/"+runId+"/runners/"+userId).remove();
-    this.af.database.object("users/"+userId+"/feedRuns/"+runId+"/sign").remove();
-    this.af.database.object("users/"+userId+"/comingUpRunsIds/"+runId).remove();
+    this.af.database.object("users/"+userId+"/feedRuns/"+runId+"/runners/"+userId).remove().then(x=>{
+      this.af.database.object("users/"+userId+"/feedRuns/"+runId+"/sign").remove().then(x=>{
+        this.af.database.object("users/"+userId+"/comingUpRunsIds/"+runId).remove().then(x=>{
+          this.af.database.object('runs/'+runId+"/runners/"+userId).remove().then(x=>{
+            this.postForUpdate(userId,runId).subscribe(x=>{
+              console.log(x)
+            });
+          });
+        })
+      });
+      }
+    );
+
+
     //this.af.database.object('users/'+userId+"/comingUpRuns/"+runId).remove();
-    this.af.database.object('runs/'+runId+"/runners/"+userId).remove();
+
   }
 }
