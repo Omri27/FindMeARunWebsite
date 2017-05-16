@@ -63,4 +63,10 @@ this.authService.getAuthObservable().subscribe(user=>{
       this.runService.signOut(userId,runId);
     })
   }
+  deleteHistoryRun(runId:any){
+    this.authService.getAuthObservable().subscribe(user=>{
+      let userId = user.uid;
+      this.runService.deleteHistoryRun(userId,runId);
+    })
+  }
 }

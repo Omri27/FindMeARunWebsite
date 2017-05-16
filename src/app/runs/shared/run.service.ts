@@ -56,17 +56,11 @@ else
   getHistoryRuns(uid){
     return this.runs= this.af.database.list('users/'+uid+"/historyRuns");
 }
-  // setLike(userId , runId,yesNo:any){
-  //   this.af.database.object('users/'+userId + '/historyRuns/'+runId).update({marked:true})
-  //   this.af.database.object('users/'+userId + '/historyRuns/'+runId).update({like:yesNo})
-  //   this.postForUpdate(userId).subscribe(x=>{
-  //     if(x.ok)
-  //     console.log("Good");
-  //     else
-  //       console.log(x);
-  //   });
-  //
-  // }
+
+  deleteHistoryRun(userId,runId){
+    this.af.database.object('users/'+userId+"/historyRuns/"+runId).remove();
+    this.af.database.object('users/'+userId+"/comingUpRunsIds/"+runId).remove();
+  }
   postForUpdate(uid){
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
@@ -76,12 +70,14 @@ else
   signToRun(userId,runId){
     this.af.database.object("users/"+userId+"/feedRuns/"+runId+"/runners/"+userId).set(true);
     this.af.database.object("users/"+userId+"/feedRuns/"+runId+"/sign").set(true);
+    this.af.database.object("users/"+userId+"/comingUpRunsIds/"+runId).set(true);
    // this.af.database.object('users/'+userId+"/comingUpRuns/"+runId).set(true);
     this.af.database.object('runs/'+runId+"/runners/"+userId).set(true);
   }
   signOut(userId,runId){
     this.af.database.object("users/"+userId+"/feedRuns/"+runId+"/runners/"+userId).remove();
     this.af.database.object("users/"+userId+"/feedRuns/"+runId+"/sign").remove();
+    this.af.database.object("users/"+userId+"/comingUpRunsIds/"+runId).remove();
     //this.af.database.object('users/'+userId+"/comingUpRuns/"+runId).remove();
     this.af.database.object('runs/'+runId+"/runners/"+userId).remove();
   }

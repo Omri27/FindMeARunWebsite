@@ -31,4 +31,7 @@
     <div *ngIf = "!run?.sign" class="beThereBtn"><button (click)="signToRun(run?.$key)">Sign To the Run</button></div>
     <div *ngIf = "run?.sign" class="Cancel"><button (click)="cancelSign(run?.$key)">Cancel sign Up</button></div>
   </div>
+  <div *ngIf="routeUrl=='historyruns'">
+    <div class="delete"><button (click)="deleteHistoryRun(run?.$key)">Delete</button></div>
+  </div>
 </div>

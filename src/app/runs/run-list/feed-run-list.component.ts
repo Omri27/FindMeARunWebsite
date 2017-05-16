@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 export class FeedRunListComponent implements OnInit {
   runs: any[]
   location: any = null;
+  title:any;
 
   constructor(private runService: RunService, private authService: AuthService, private route: Router) {
   }
@@ -28,11 +29,13 @@ console.log(location)
         let Location = {longtitude: array[0], latitude: array[1]};
           switch (this.route.url) {
             case "/runs":
+              this.title = "Run Feed"
               this.runService.postFeedRuns(userId, Location).subscribe(x => {
                 this.getRuns(userId);
               });
               break;
             case "/upcomingruns":
+              this.title = "ComingUp Runs"
               this.getRuns(userId);
               break;
           }
