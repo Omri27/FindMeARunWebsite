@@ -10,6 +10,7 @@ import {AuthService} from "../../user/shared/auth.service";
 })
 export class RunThumbnailComponent implements OnInit {
 @Input() run:any
+  @Input() userId:any
   parentRoute:any
   constructor(private route:Router, private runService:RunService, private authService:AuthService) {
 

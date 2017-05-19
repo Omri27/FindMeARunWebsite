@@ -62,7 +62,6 @@ else
     this.af.database.object('users/'+userId+"/comingUpRunsIds/"+runId).remove();
   }
   postForUpdate(uid,runKey){
-    console.log("post");
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     return this.http.post('http://'+this.APIADDRESS+':8080/updateAverage',{userId:uid,runId:runKey},options)
@@ -84,8 +83,6 @@ else
       });
     })
 
-
-   // this.af.database.object('users/'+userId+"/comingUpRuns/"+runId).set(true);
 
   }
   signOut(userId,runId){

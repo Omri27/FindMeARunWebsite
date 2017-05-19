@@ -9,10 +9,11 @@
 
   <div class="row">
     <div class="col-md-6">
-      <div><strong>Creator:</strong> {{run?.name}}</div>
+      <div><strong>Creator:</strong> {{run?.creator}}</div>
       <div><strong>Date:</strong> {{run?.date}}</div>
       <div><strong>Time:</strong> {{run?.time}}</div>
       <div><strong>Distance:</strong> {{run?.distance}}</div>
+      <div><strong>Match:</strong> {{run?.runPropertyMatch}}%</div>
       <div><strong>Location:</strong> {{run?.location?.name}}</div>
       <sebm-google-map [latitude]="run?.location?.latitude" [longitude]="run?.location?.longtitude" [scrollwheel]="true" [zoom]="12">
         <sebm-google-map-marker [latitude]="run?.location?.latitude" [longitude]="run?.location?.longtitude"></sebm-google-map-marker>
@@ -27,7 +28,7 @@
       <!--</div>-->
     </div>
   </div>
-  <div *ngIf="routeUrl!='historyruns'">
+  <div *ngIf="routeUrl!='historyruns' && run?.creatorId != userId">
     <div *ngIf = "!run?.sign" class="beThereBtn"><button (click)="signToRun(run?.$key)">Sign To the Run</button></div>
     <div *ngIf = "run?.sign" class="Cancel"><button (click)="cancelSign(run?.$key)">Cancel sign Up</button></div>
   </div>

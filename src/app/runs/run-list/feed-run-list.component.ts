@@ -12,7 +12,7 @@ export class FeedRunListComponent implements OnInit {
   runs: any[]
   location: any = null;
   title:any;
-
+  userId:any;
   constructor(private runService: RunService, private authService: AuthService, private route: Router) {
   }
 
@@ -24,19 +24,19 @@ export class FeedRunListComponent implements OnInit {
 console.log(location)
     this.authService.getAuthObservable().subscribe(user => {
       if (user != null && user.uid != null) {
-        let userId = user.uid;
+         this.userId = user.uid;
         let array = location.split(',');
         let Location = {longtitude: array[0], latitude: array[1]};
           switch (this.route.url) {
             case "/runs":
               this.title = "Run Feed"
-              this.runService.postFeedRuns(userId, Location).subscribe(x => {
-                this.getRuns(userId);
+              this.runService.postFeedRuns(this.userId, Location).subscribe(x => {
+                this.getRuns(this.userId);
               });
               break;
             case "/upcomingruns":
               this.title = "ComingUp Runs"
-              this.getRuns(userId);
+              this.getRuns(this.userId);
               break;
           }
       }
@@ -60,7 +60,7 @@ console.log(location)
             this.runs = runs.sort(sortBydistance);
           break;
         case "/upcomingruns":
-          this.runs = runs.filter(run => run.sign == true);
+          this.runs = runs.filter(run => run.sign == true || run.creatorId == userId  );
           break;
       }
     })
